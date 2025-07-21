@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AAPI 2025 Table Lookup</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('13AE0875-E27B-4241-96B5-1D7E1B228C54.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      max-width: 300px;
+      margin-bottom: 30px;
+    }
+    .lookup-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      color: #000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .lookup-box h2 {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      background-color: #003366;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <img src="A0CDE7F0-7BD0-4AEF-BB9C-4BFD629542E1.jpeg" alt="AAPI Logo" class="logo" />
+    <div class="lookup-box">
+      <h2>AAPI 2025 Table Lookup</h2>
+      <input type="text" id="firstName" placeholder="First Name" />
+      <input type="text" id="lastName" placeholder="Last Name" />
+      <br/>
+      <button onclick="lookupTable()">Find My Table</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="lookup-data.js"></script>
+  <script>
+    function lookupTable() {
+      const first = document.getElementById("firstName").value.trim().toLowerCase();
+      const last = document.getElementById("lastName").value.trim().toLowerCase();
+      const key = `${first}_${last}`;
+      const resultDiv = document.getElementById("result");
+
+      if (tableAssignments[key]) {
+        resultDiv.textContent = `✅ ${tableAssignments[key]}`;
+      } else {
+        resultDiv.textContent = "❌ No table found. Please check spelling or visit Help Desk.";
+      }
+    }
+  </script>
+</body>
+</html>
