@@ -70,8 +70,6 @@ const tableAssignments = {
   "arra -2_reddy": "Table 10 (Friday) & Table 10 (Saturday)",
   "parveen_sachedina": "Table 10 (Friday) & Table 10 (Saturday)",
   "azeem_sachedina": "Table 10 (Friday) & Table 10 (Saturday)",
-  "dr. bhushan_pandya": "Table 10 (Friday) & Table 10 (Saturday)",
-  "dr. bhushan-2_pandya": "Table 10 (Friday) & Table 10 (Saturday)",
   "charles_kannankeril": "Table 10 (Friday) & Table 10 (Saturday)",
   "ritu_agarwal": "Table 10 (Friday) & Table 10 (Saturday)",
   "bikash_agarwal": "Table 10 (Friday) & Table 10 (Saturday)",
