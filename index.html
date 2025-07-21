@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AAPI Convention 2025 Table Lookup</title>
+  <title>AAPI 2025 Table Lookup</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: url('13AE0875-E27B-4241-96B5-1D7E1B228C54.jpeg') no-repeat center center fixed;
-      background-size: cover;
+      background-size: contain; background-repeat: no-repeat; background-position: top center;
       color: #fff;
     }
     .overlay {
@@ -63,9 +63,9 @@
 </head>
 <body>
   <div class="overlay">
-    <img src="A0CDE7F0-7BD0-4AEF-BB9C-4BFD629542E1.jpeg" alt="AAPI Logo" class="logo" />
+    <img src="A0CDE7F0-7BD0-4AEF-BB9C-4BFD629542E1.jpeg" alt="AAPI Logo" class="logo" style="position: absolute; top: 20px; left: 20px; max-width: 150px;" />
     <div class="lookup-box">
-      <h2>Welcome to AAPI CONVENTION 2025 Table Lookup</h2>
+      <h2>AAPI 2025 Table Lookup</h2>
       <input type="text" id="firstName" placeholder="First Name" />
       <input type="text" id="lastName" placeholder="Last Name" />
       <br/>
@@ -74,19 +74,49 @@
     </div>
   </div>
 
-  <script src="lookup-data (1).js"></script>
+  <script src="lookup-data.js"></script>
   <script>
     function lookupTable() {
       const first = document.getElementById("firstName").value.trim().toLowerCase();
       const last = document.getElementById("lastName").value.trim().toLowerCase();
-      const key = `${first}_${last}`;
       const resultDiv = document.getElementById("result");
+      let results = [];
 
-      if (tableAssignments[key]) {
-        resultDiv.textContent = `✅ ${tableAssignments[key]}`;
-      } else {
-        resultDiv.textContent = "❌ No table found. Please check spelling or visit Help Desk.";
+      if (!first && !last) {
+        resultDiv.textContent = "❗ Please enter at least First or Last Name.";
+        return;
       }
+
+      for (const [key, value] of Object.entries(tableAssignments)) {
+        const [fname, lname] = key.split("_");
+
+        const firstMatch = first && fname.includes(first);
+        const lastMatch = last && lname.includes(last);
+
+        if ((first && !last && firstMatch) ||
+            (last && !first && lastMatch) ||
+            (first && last && firstMatch && lastMatch)) {
+          
+    const [fridayText, saturdayText] = value.includes("&")
+      ? value.split("&").map(s => s.trim())
+      : [value, ""];
+    const formatted = `${capitalize(fname)} ${capitalize(lname)}:<br>` +
+                      (fridayText ? `🪑 ${fridayText}<br>` : "") +
+                      (saturdayText ? `🪑 ${saturdayText}<br>` : "");
+    results.push(formatted);
+    
+        }
+      }
+
+      if (results.length > 0) {
+        resultDiv.innerHTML = "✅ Matches found:<br><br>" + results.join("<br>");
+      } else {
+        resultDiv.textContent = "❌ No matching name found. Please check your spelling.";
+      }
+    }
+
+    function capitalize(name) {
+      return name.charAt(0).toUpperCase() + name.slice(1);
     }
   </script>
 </body>
